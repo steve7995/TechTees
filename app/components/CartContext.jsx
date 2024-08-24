@@ -109,13 +109,12 @@ const stockProducts = [
 ];
 // creating the provider
 export function CartProvider({ children }) {
+   const [cartItems, setCartItems] = useState([])
   useEffect(()=>{
-     const [cartItems, setCartItems] = useState(
-    localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem("cartItems"))
-      : []
-  );
+    const defaultCart = localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): []
+    setCartItems(defaultCart);
   },[])
+
  
 
   const addToCart = (item) => {
