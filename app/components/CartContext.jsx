@@ -109,11 +109,14 @@ const stockProducts = [
 ];
 // creating the provider
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState(
+  useEffect(()=>{
+     const [cartItems, setCartItems] = useState(
     localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : []
   );
+  },[])
+ 
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id); // check if the item is already in the cart
